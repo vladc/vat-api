@@ -24,6 +24,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'src/bower_modules')));
+app.use(express.static(path.join(__dirname,'bower_modules')));
 
 
 app.get('/',function(req,res){
