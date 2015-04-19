@@ -6,14 +6,6 @@
     "vzambelli <valentin.zambelli@gmail.com>"
   ],
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "src/bower_modules",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "bootstrap": "~3.3.4"
   }

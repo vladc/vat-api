@@ -8,12 +8,19 @@ var app = express();
 
 var vatRates;
 
-request
-.get('http://jsonvat.com')
-.end(function(err,res){
-  vatRates = res.body.rates;
-});
+var getRates = function() {
+  request
+    .get('http://jsonvat.com')
+    .end(function(err,res){
+      vatRates = res.body.rates;
+    });
+};
 
+getRates();
+
+setInterval(function(){
+   getRates();
+}, 6000000);
 // configure app
 
 app.set('view engine', 'ejs');
@@ -24,7 +31,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'src/bower_modules')));
-app.use(express.static(path.join(__dirname,'bower_modules')));
 
 
 app.get('/',function(req,res){
