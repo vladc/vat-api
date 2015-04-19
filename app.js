@@ -6,13 +6,19 @@ var logger = require('morgan');
 
 var app = express();
 
-var vatRates;
+var getRates = function(){
+    request
+    .get('http://jsonvat.com')
+    .end(function(err,res){
+      return res.body.rates;
+    });
+}();
+var vatRates = getRates();
 
-request
-.get('http://jsonvat.com')
-.end(function(err,res){
-  vatRates = res.body.rates;
-});
+setInterval(function(){
+  vatRates = getRates();
+}, 6000000);
+
 
 // configure app
 
@@ -25,7 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'src/bower_modules')));
 
-app.get('/:ip', function(req,res){
+app.get('/vat/:ip', function(req,res){
   var ip = req.params.ip,
       country,
       countryCode,
@@ -43,13 +49,13 @@ app.get('/:ip', function(req,res){
        for(var i = 0; i < vatRates.length;i++){
 
          if(vatRates[i].country_code === countryCode){
-           rate = vatRates[i].periods[0].rates.standard;
+           rate = vatRates[i].periods[0].rates;
          }
 
        }
      }
-
-    res.send({rate:rate});
+     var answer = {rate:rate};
+    res.send(JSON.stringify(answer));
 
   });
 
