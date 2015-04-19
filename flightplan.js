@@ -1,32 +1,19 @@
 var plan = require('flightplan');
 
-var appName = 'node-app';
+var appName = 'vat-api';
 var username = 'deploy';
-var startFile = 'bin/www';
+var startFile = 'app.js';
 
 var tmpDir = appName+'-' + new Date().getTime();
 
 // configuration
-plan.target('staging', [
-  {
-    host: '104.131.93.214',
-    username: username,
-    agent: process.env.SSH_AUTH_SOCK
-  }
-]);
 
 plan.target('production', [
   {
     host: '46.101.171.98',
-    username: "deploy",
+    username: username,
     agent: process.env.SSH_AUTH_SOCK
   },
-//add in another server if you have more than one
-// {
-//   host: '104.131.93.216',
-//   username: username,
-//   agent: process.env.SSH_AUTH_SOCK
-// }
 ]);
 
 // run commands on localhost
