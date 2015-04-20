@@ -20,7 +20,7 @@ getRates();
 
 setInterval(function(){
    getRates();
-}, 6000000);
+}, 60000 * 120);
 // configure app
 
 app.set('view engine', 'ejs');
@@ -60,7 +60,10 @@ app.get('/vat/:ip', function(req,res){
 
        }
      }
-     var answer = {rates:rate};
+     var answer = {
+       rates:rate,
+       countryCode:countryCode,
+       country:country};
     res.send(answer);
 
   });
