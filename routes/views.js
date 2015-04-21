@@ -12,7 +12,9 @@ router.get('/',function(req,res){
        console.log(err);
 
     } else {
-      res.render('index');
+      res.render('index',{
+        res:r
+      });
     }
      });
 });
