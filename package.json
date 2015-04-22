@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "chai": "^2.2.0",
-    "flightplan": "^0.6.2"
+    "flightplan": "^0.6.2",
+    "zombie": "^4.0.8"
   }
 }

@@ -52,7 +52,7 @@ router.get('/vat/:ip', function(req,res){
          countryCode:result.countryCode,
          country:result.country};
 
-        res.send(answer);
+        res.json(answer);
 
        }
     });

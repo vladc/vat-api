@@ -13,7 +13,7 @@ var app = express();
 // configure app
 
 app.set('view engine', 'ejs');
-app.set('views',path.join(__dirname,'views'));
+app.set('views',path.join(__dirname,'src'));
 
 // add middleware
 app.use(logger('dev'));
@@ -24,8 +24,6 @@ app.use(express.static(path.join(__dirname,'src/bower_modules')));
 // add routes
 app.use('/',views);
 app.use('/api',api);
-
-
 
 app.listen('3000',function(){
   console.log("Server Running");

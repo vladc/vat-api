@@ -4,7 +4,16 @@ var chai = require('chai');
 var expect = chai.expect;
 
 
-describe('vat rest api', function(){
+describe('Basic VAT api', function(){
+
+  it('should return successful',function(done){
+    request.get("http://localhost:3000/api/vat/62.178.4.127")
+      .end(function(err,res){
+        expect(err).to.be.null;
+        expect(res.body.successful).to.equal(true);
+        done();
+      });
+  });
 
   it('should return 20 for Austrian IPs',function(done){
     request.get("http://localhost:3000/api/vat/62.178.4.127")
