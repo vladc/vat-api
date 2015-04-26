@@ -51,11 +51,10 @@ describe('Basic VAT api', function(){
         });
     });
 
-    it('should return null for countries outside the EU',function(done){
+    it('should return an error for countries outside the EU',function(done){
       request.get("http://localhost:3000/api/vat/67.132.30.211")
         .end(function(err,res){
-          expect(err).to.be.null;
-          expect(res.body.rates).to.be.null;
+          expect(err).to.be.exist;
           done();
         });
     });

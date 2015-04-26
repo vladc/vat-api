@@ -3,17 +3,51 @@
 
 <head>
 <title>Dwelly VAT RATE</title>
+  <link type="text/css" rel="stylesheet" href="bower_modules/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="style.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 </head>
 
 <body>
-<div class="container">
-<h1>Easily get EU VAT rates based on IP adresses </h1>
-<p> Simply send a GET request to this endpoint:</p>
-<p class="url-example">http://dwelly.me/api/vat/54.154.87.28</p>
 
-<p> The answer is a JSON object like this one </p>
-<p class="json-example">{"successful":true,"rates":{"super_reduced":4.8,"reduced1":9,"reduced2":13.5,"standard":23,"parking":13.5},"countryCode":"IE","country":"Ireland"}</p>
-</div>
+  <header>
+
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="s12">
+
+          <h1 class="center-align">Easily get and verify EU VAT rates based on IP adresses </h1>
+
+          <h5> Simply send a GET request to this endpoint:</h5>
+          <strong>GET: http://dwelly.me/api/vat/54.154.87.28</strong>
+
+          <p> The answer is a JSON object like this one </p>
+          <strong>{"successful":true,errors:[],"rates":{"super_reduced":4.8,"reduced1":9,"reduced2":13.5,"standard":23,"parking":13.5},"countryCode":"IE","country":"Ireland"}</strong>
+
+          <h5>Or use the more advanced POST endpoint to validate the origin of a user using multiple pieces of evidence</h5>
+          <strong>POST: http://dwelly.me/api/vat</strong>
+          <p>The request body should look like this: {ip:'54.154.87.28', evidence:[DE,IE]}</p>
+
+          <p> The answer is a JSON object like this one </p>
+          <strong>{"successful":true,validated:true,errors:[],"rates":{"super_reduced":4.8,"reduced1":9,"reduced2":13.5,"standard":23,"parking":13.5},"countryCode":"IE","country":"Ireland"}</strong>
+          <p>If 2 or more country codes match (including the ip address) it sends back the appropriate VAT rate.</p>
+          <p>If no country code matches another one it sends back the VAT rate based on the IP address and a validated:false flag</p>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="bower_modules/materialize/dist/js/materialize.min.js"></script>
 
 </body>
 

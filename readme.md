@@ -1,2 +1,1 @@
-dwelly.me offers a lightweight API to retrieve EU VAT rates based on IP addresses
-Go on www.dwelly.me for more info
+Currently in dev mode. This program will provide a lightweight API to validated EU VAT rates. Built with the help if jsonvat.com and ip-api.com!
